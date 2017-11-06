@@ -34,7 +34,7 @@
                             <div class="row center">
                                 <div class="input-field col s12">
                                     <input name="id" type="text" class="validate" ng-model ="id" >
-                                    <label for="icon_prefix">Seq Number</label>
+                                    <label for="icon_prefix">Sequence Number</label>
                                 </div>
                             </div>
 
