@@ -13,7 +13,7 @@
 
     <body>
         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="index.php" class="brand-logo">RailMaster 1.0 (Beta) </a></div>
+            <div class="nav-wrapper container"><a id="logo-container" href="index1.php" class="brand-logo">RailMaster 1.0 (Beta) </a></div>
         </nav>
 
         <div class="body-content">
@@ -29,18 +29,25 @@
                     <form class="col s12" method="post" enctype="multipart/form-data" autocomplete="off">
                         <div class="alert alert-error"></div>
 
-                        <div ng-app ="myapp" ng-controller ="userController" ng-init = "displayData()">
+                        <div ng-app='myapp' ng-controller="userCtrl">
 
                             <div class="row center">
                                 <div class="input-field col s12">
-                                    <input name="sid" type="text" class="validate" ng-model ="sid" required>
+                                    <input name="id" type="text" class="validate" ng-model ="id" >
+                                    <label for="icon_prefix">Seq Number</label>
+                                </div>
+                            </div>
+
+                            <div class="row center">
+                                <div class="input-field col s12">
+                                    <input name="sid" type="text" class="validate" ng-model ="sid">
                                     <label for="icon_prefix">Station ID</label>
                                 </div>
                             </div>
 
                             <div class="row center">
                                 <div class="input-field col s12">
-                                    <input name="sname" type="text" class="validate" ng-model ="sname" required>
+                                    <input name="sname" type="text" class="validate" ng-model ="sname">
                                     <label for="icon_prefix">Station Name</label>
                                 </div>
                             </div>
@@ -48,8 +55,8 @@
 
                             <div class ="row center">
                                 <div class = "col s12">
-                                    <input type="submit" name="btnInsert" ng-click = "insertData()" value="ADD" class="btn-large waves-effect waves-light orange" />
-                                    <a href="addtrains.php" id="download-button" class="btn-large waves-effect waves-light orange">Add a Train</a>
+                                    <input type="submit" name="btn_insert" ng-click = "add()" value="Add Station" 
+                                           class="btn-large waves-effect waves-light orange" />
                                 </div>
                             </div>
 
@@ -57,51 +64,81 @@
                             <table class = "table table-bordered ex">
                                 <div class = "row center">
                                     <tr>
-                                        <th>Sid</th>
+                                        <th>Seq No</th>
+                                        <th>SID</th>
                                         <th>Station Name</th>
                                     </tr>
 
-                                    <tr ng-repeat = "y in stations">
+                                    <tr ng-repeat = "y in station">
+                                        <td>{{y.id}}</td>
                                         <td>{{y.sid}}</td>
                                         <td>{{y.sname}}</td>
-                                    </tr> 
+                                        <td><input type="submit" value="Delete" ng-click = "remove($index, y.id)" 
+                                                   class="btn-large waves-effect waves-light orange" /></td>
+                                    </tr>
+
                                 </div>		   
                             </table>
+                        </div>
+
+                        <div class = "row center">
+                            <div class = "col s12">
+                                <a href = "index1.php" class="btn-large waves-effect waves-light orange">Home</a>
+                                <a href = "addtrains.php" class="btn-large waves-effect waves-light orange">Add a Train</a>
+                            </div>
                         </div>
 
                     </form>
 
                 </div>
             </div>
+    </body>
+</html>
 
-            <!--  Scripts-->
-            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-            <script src="js/materialize.js"></script>
-            <script src="js/init.js"></script>
-            <script src="js/script.js"></script>
-            <link rel="stylesheet" href ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+<script src="js/script.js"></script>
+<link rel="stylesheet" href ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 
 
-            <script>
-                                          var app = angular.module("myapp", []);
+<script>
+                                                                                    var fetch = angular.module('myapp', []);
 
-                                          app.controller("userController", function ($scope, $http) {
-                                              $scope.insertData = function () {
-                                                  $http.post("insert_station.php",
-                                                          {'sid': $scope.sid, 'sname': $scope.sname}).success(function (data) {
-                                                      alert(data);
-                                                      $scope.sid = null;
-                                                      $scope.sname = null;
-                                                      $scope.displayData();
-                                                  });
-                                              }
-                                              $scope.displayData = function () {
-                                                  $http.get("display_station.php")
-                                                          .success(function (data) {
-                                                              $scope.stations = data;
-                                                          });
-                                              }
-                                          });
+                                                                                    fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
 
-            </script>
+                                                                                            // Get all records
+                                                                                            $http({
+                                                                                                method: 'post',
+                                                                                                url: 'insertdeletestation.php',
+                                                                                                data: {request_type: 1},
+                                                                                            }).then(function successCallback(response) {
+                                                                                                $scope.station = response.data;
+                                                                                            });
 
+                                                                                            // Add new record
+                                                                                            $scope.add = function () {
+                                                                                                $http({
+                                                                                                    method: 'post',
+                                                                                                    url: 'insertdeletestation.php',
+                                                                                                    data: {id: $scope.id, sid: $scope.sid, sname: $scope.sname, request_type: 2},
+                                                                                                }).then(function successCallback(response) {
+                                                                                                    $scope.station.push(response.data[0]);
+                                                                                                });
+                                                                                            }
+
+                                                                                            // Remove record
+                                                                                            $scope.remove = function (index, id) {
+                                                                                                $http({
+                                                                                                    method: 'post',
+                                                                                                    url: 'insertdeletestation.php',
+                                                                                                    data: {id: id, request_type: 3},
+                                                                                                }).then(function successCallback(response) {
+                                                                                                    $scope.station.splice(index, 1);
+                                                                                                });
+                                                                                            }
+
+                                                                                        }]);
+
+</script>
