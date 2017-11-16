@@ -11,14 +11,14 @@
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     </head>
     <body>
-        <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="index1.php" class="brand-logo">RailMaster 1.0 (Beta) </a>
+        <nav class="red lighten-1" role="navigation">
+             <div class="nav-wrapper container"><a id="logo-container" href="index.php" class="brand-logo">RailMaster 1.0 (Beta) </a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Logged In As Root</a></li>
+                    <li><a href="#">Log Out</a></li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#">Logged In As Root</a></li>
+                    <li><a href="#">Log Out</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
@@ -27,26 +27,21 @@
         <div class="section no-pad-bot" id="index-banner">
             <div class="container">
                 <br><br>
-                <h1 class="header center orange-text">Database Home Page</h1>
+                <h1 class="header center red-text">Admin Home Page</h1>
                 <div class="row center">
                     <h5 class="header col s12 light">Enter Data to Store</h5>
                 </div>
                 <div class="row center">
                     <form class="form" autocomplete="off">
                         <div class="alert alert-error"></div>
-                        <input type="button" value="Add Trains" class="btn-large waves-effect waves-light orange" onClick="document.location.href = 'addtrains.php'" /><br></br>
-                        <input type="button" value="Add Stations" class="btn-large waves-effect waves-light orange" onClick="document.location.href = 'addstation.php'" />
-                        <input type="button" value="Display Trains" class="btn-large waves-effect waves-light orange" onClick="document.location.href = 'displaytrains.php'" /><br></br>
-                        <input type="button" value="Go to Home" class="btn-large waves-effect waves-light orange" onClick="document.location.href = 'index.php'" />
-                        <input type="button" value="Add Schedule" class="btn-large waves-effect waves-light orange" onClick="document.location.href = 'displaytrains.php'" /><br></br>
+                        <input type="button" value="Add Trains" class="btn-large waves-effect waves-light red" onClick="document.location.href = 'addtrains.php'" />
+                        <input type="button" value="Add Stations" class="btn-large waves-effect waves-light red" onClick="document.location.href = 'addstation.php'" /><br><br>
+                        <input type="button" value="Add Schedule" class="btn-large waves-effect waves-light red" onClick="document.location.href = 'addschedule.php'" />
                     </form>
                 </div>
                 <br><br>
             </div>
         </div>
-
-    </div>
-</div>
 
 
 <!--  Scripts-->
@@ -60,7 +55,7 @@ $con = mysqli_connect("localhost", "root", "", "collegedb");
 if (mysqli_connect_errno()) {
     echo "RailMaster Server is Down, Please Contact Pavan Hegde" . mysqli_connect_error();
 } else
-    echo "<b> Database System and Server Status : </b><i> Online </i> "
+    echo "<br><br><br><br><b> Database System and Server Status : </b><i> Online. </i> ";
     ?>
 </body>
 </html>

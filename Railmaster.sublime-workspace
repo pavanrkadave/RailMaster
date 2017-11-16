@@ -1,0 +1,243 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"train",
+				"trainno"
+			],
+			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"jso",
+				"json_encode"
+			],
+			[
+				"mys",
+				"mysql_query"
+			],
+			[
+				"p",
+				"php\t<?php … ?>"
+			],
+			[
+				"h",
+				"http"
+			],
+			[
+				"from",
+				"from_st"
+			],
+			[
+				"arr",
+				"arrival"
+			],
+			[
+				"to",
+				"to_st"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Snippet: ",
+				"Snippet: <?php else: ?>"
+			]
+		],
+		"width": 524.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/C/xampp/htdocs/RailMaster/insertdeleteschedule.php",
+		"/C/xampp/htdocs/RailMaster/addschedule.php",
+		"/C/xampp/htdocs/RailMaster/load_train.php",
+		"/C/xampp/htdocs/RailMaster/js/materialize.js",
+		"/C/xampp/htdocs/RailMaster/js/script.js",
+		"/C/xampp/htdocs/RailMaster/addstation.php",
+		"/C/xampp/htdocs/RailMaster/addtrains.php",
+		"/C/xampp/htdocs/RailMaster/home_user.php",
+		"/C/xampp/htdocs/RailMaster/home_admin.php",
+		"/C/xampp/htdocs/RailMaster/config.php",
+		"/C/xampp/htdocs/RailMaster/js/init.js",
+		"/C/xampp/htdocs/RailMaster/css/style.css",
+		"/C/xampp/htdocs/RailMaster/css/materialize.css",
+		"/C/xampp/htdocs/RailMaster/login_user.php",
+		"/C/xampp/htdocs/RailMaster/LICENSE",
+		"/C/xampp/htdocs/RailMaster/insertdeletestation.php",
+		"/C/xampp/htdocs/RailMaster/train.gif",
+		"/C/xampp/htdocs/RailMaster/insertdeletetrains.php",
+		"/C/xampp/htdocs/RailMaster/index.php",
+		"/C/xampp/htdocs/RailMaster/css/materialize.min.css"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".input-field input[type=text]:foc",
+			".input-field focus"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "C:\\xampp\\htdocs\\RailMaster"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 199.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

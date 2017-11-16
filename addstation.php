@@ -12,15 +12,15 @@
     </head>
 
     <body>
-        <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="index1.php" class="brand-logo">RailMaster 1.0 (Beta) </a></div>
+        <nav class="red lighten-1" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="home_admin.php" class="brand-logo">RailMaster 1.0 (Beta) </a></div>
         </nav>
 
         <div class="body-content">
             <div class="section no-pad-bot">
                 <div class = "container">
-                    <br><br>
-                    <h1 class = "header center orange-text">Database Home Page</h1>
+   
+                    <h1 class = "header center red-text">Database Home Page</h1>
 
                     <div class = "row center">
                         <h5 class = "header col s12 light">Enter a Station to store</h5>
@@ -33,7 +33,7 @@
 
                             <div class="row center">
                                 <div class="input-field col s12">
-                                    <input name="id" type="text" class="validate" ng-model ="id" >
+                                    <input name="id" type="text" class="validate" ng-model ="id"  required>
                                     <label for="icon_prefix">Sequence Number</label>
                                 </div>
                             </div>
@@ -56,26 +56,30 @@
                             <div class ="row center">
                                 <div class = "col s12">
                                     <input type="submit" name="btn_insert" ng-click = "add()" value="Add Station" 
-                                           class="btn-large waves-effect waves-light orange" />
+                                           class="btn waves-effect waves-light red" />
                                 </div>
                             </div>
 
 
-                            <table class = "table table-bordered ex">
+                            <table class = "table highlight centered">
                                 <div class = "row center">
-                                    <tr>
+                                    <thead>
+									<tr>
                                         <th>Seq No</th>
                                         <th>SID</th>
                                         <th>Station Name</th>
                                     </tr>
-
+									</thead>
+									
+									<tbody>
                                     <tr ng-repeat = "y in station">
                                         <td>{{y.id}}</td>
                                         <td>{{y.sid}}</td>
                                         <td>{{y.sname}}</td>
                                         <td><input type="submit" value="Delete" ng-click = "remove($index, y.id)" 
-                                                   class="btn-large waves-effect waves-light orange" /></td>
+                                                   class="btn-large waves-effect waves-light red" /></td>
                                     </tr>
+									</tbody>
 
                                 </div>		   
                             </table>
@@ -83,8 +87,8 @@
 
                         <div class = "row center">
                             <div class = "col s12">
-                                <a href = "index1.php" class="btn-large waves-effect waves-light orange">Home</a>
-                                <a href = "addtrains.php" class="btn-large waves-effect waves-light orange">Add a Train</a>
+                                <a href = "home_admin.php" class="btn-large waves-effect waves-light red">Home</a>
+                                <a href = "addtrains.php" class="btn-large waves-effect waves-light red">Add a Train</a>
                             </div>
                         </div>
 
@@ -104,41 +108,41 @@
 
 
 <script>
-                                                                                    var fetch = angular.module('myapp', []);
+    var fetch = angular.module('myapp', []);
 
-                                                                                    fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
+    fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
 
-                                                                                            // Get all records
-                                                                                            $http({
-                                                                                                method: 'post',
-                                                                                                url: 'insertdeletestation.php',
-                                                                                                data: {request_type: 1},
-                                                                                            }).then(function successCallback(response) {
-                                                                                                $scope.station = response.data;
-                                                                                            });
+            // Get all records
+            $http({
+                method: 'post',
+                url: 'insertdeletestation.php',
+                data: {request_type: 1},
+            }).then(function successCallback(response) {
+                $scope.station = response.data;
+            });
 
-                                                                                            // Add new record
-                                                                                            $scope.add = function () {
-                                                                                                $http({
-                                                                                                    method: 'post',
-                                                                                                    url: 'insertdeletestation.php',
-                                                                                                    data: {id: $scope.id, sid: $scope.sid, sname: $scope.sname, request_type: 2},
-                                                                                                }).then(function successCallback(response) {
-                                                                                                    $scope.station.push(response.data[0]);
-                                                                                                });
-                                                                                            }
+            // Add new record
+            $scope.add = function () {
+                $http({
+                    method: 'post',
+                    url: 'insertdeletestation.php',
+                    data: {id: $scope.id, sid: $scope.sid, sname: $scope.sname, request_type: 2},
+                }).then(function successCallback(response) {
+                    $scope.station.push(response.data[0]);
+                });
+            }
 
-                                                                                            // Remove record
-                                                                                            $scope.remove = function (index, id) {
-                                                                                                $http({
-                                                                                                    method: 'post',
-                                                                                                    url: 'insertdeletestation.php',
-                                                                                                    data: {id: id, request_type: 3},
-                                                                                                }).then(function successCallback(response) {
-                                                                                                    $scope.station.splice(index, 1);
-                                                                                                });
-                                                                                            }
+            // Remove record
+            $scope.remove = function (index, id) {
+                $http({
+                    method: 'post',
+                    url: 'insertdeletestation.php',
+                    data: {id: id, request_type: 3},
+                }).then(function successCallback(response) {
+                    $scope.station.splice(index, 1);
+                });
+            }
 
-                                                                                        }]);
+        }]);
 
 </script>

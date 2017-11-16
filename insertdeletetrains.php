@@ -19,6 +19,7 @@ if ($request_type == 1) {
 
 // Insert record
 if ($request_type == 2) {
+
     $trainno = $data->trainno;
     $name = $data->name;
     $type = $data->type;
@@ -38,4 +39,5 @@ if ($request_type == 3) {
     mysqli_query($con, "delete from trains where trainno=" . $trainno);
     echo 1;
 }
+
 ?>

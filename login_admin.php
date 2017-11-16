@@ -11,20 +11,20 @@
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     </head>
     <body>
-        <nav class="light-blue lighten-1" role="navigation">
+        <nav class="red lighten-1" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="index.php" class="brand-logo">RailMaster 1.0 (Beta) </a></div>
         </nav>
 
         <div class="section no-pad-bot">
             <div class="container">
                 <br><br>
-                <h1 class="header center orange-text">Login.</h1>
+                <h1 class="header center red-text">Admin Login.</h1>
 
                 <div class="row center">
                     <h5 class="header col s12 light">Enter Username and Password to Login.</h5>
                 </div>
 
-                <form class="col s12" action="login.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                <form class="col s12" action="login_admin.php" method="post" enctype="multipart/form-data" autocomplete="off">
                     <div class="alert alert-error"></div>
 
                     <div class="row center">
@@ -37,14 +37,14 @@
                     <div class="row center">
 
                         <div class="input-field col s12">
-                            <input name="passsword" type="text" class="validate">
-                            <label for="icon_prefix">Password</label>
+                            <input name="passsword" type="password" class="validate">
+                            <label for="password">Password</label>
                         </div>
                     </div>
 
                     <div class ="row center">
                         <div class="col s12">
-                            <input type="submit" value="Save" name="register" class="btn-large waves-effect waves-light orange" />
+                            <input type="submit" value="Save" name="register" class="btn-large waves-effect waves-light red" />
                         </div>
                     </div>
 
@@ -68,11 +68,11 @@
             if ($user == 'admin' && $password = 'admin') {
 
                 echo '<script language="javascript">';
-                echo 'alert("Logged in Successfully as ' . $user . '"); location.href="index1.php"';
+                echo 'alert("Logged in Successfully as ' . $user . '"); location.href="home_admin.php"';
                 echo '</script>';
             } else {
                 echo '<script language="javascript">';
-                echo 'alert("Login Failed!"); location.href="login.php"';
+                echo 'alert("Login Failed!"); location.href="login_admin.php"';
                 echo '</script>';
             }
         }

@@ -16,7 +16,7 @@
     -->
     <body>
         <nav class="red lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="home_admin.php" class="brand-logo">RailMaster 1.0 (Beta) </a></div>
+            <div class="nav-wrapper container"><a id="logo-container" href="home_user.php" class="brand-logo">RailMaster 1.0 (Beta) </a></div>
         </nav>
 
         <div class="body-content">
@@ -26,7 +26,7 @@
                     <h1 class = "header center red-text">Database Home Page</h1>
 
                     <div class = "row center">
-                        <h5 class = "header col s12 light">Enter a Train to store</h5>
+                        <h5 class = "header col s12 light">Book A Ticket</h5>
                     </div>
 
                     <form class="col s12" method="post" enctype="multipart/form-data" autocomplete="off">
@@ -41,21 +41,26 @@
                                 </div>
                             </div>
 
-                            <div class = "row center">
-                                <div class ="input-field col s12">
-                                    <input name="name" type="text" class = "validate" ng-model = "name" />
-                                    <label for = "icon_prefix">Train Name</label>
+                            <div class="row center">
+                                <div class="input-field  col s12">
+                                    <input name="name" type="text" class="validate" ng-model = "name" required>
+                                    <label for="icon_prefix">Name</label>
                                 </div>
                             </div>
 
-                            <div class = "row center">
-                                <div class ="input-field col s12">
-                                    <input name="type" type="text" class = "validate" ng-model = "type" />
-                                    <label for = "icon_prefix">Type</label>
+                            <div class="row center">
+                                <div class="input-field  col s12">
+                                    <input name="phone" type="text" class="validate" ng-model = "phone" required>
+                                    <label for="icon_prefix">Phone</label>
                                 </div>
                             </div>
 
-                              
+                            <div class="row center">
+                                <div class="input-field  col s12">
+                                    <input name="class" type="text" class="validate" ng-model = "class" required>
+                                    <label for="icon_prefix">Class</label>
+                                </div>
+                            </div>
 
                             <div class = "row center">
                                 <div class ="input-field col s12">
@@ -73,42 +78,13 @@
 
                             <div class ="row center">
                                 <div class="col s12">
-                                    <input type="submit" id = "btn_save" ng-click ="add()" value="Save Train" class="btn-large waves-effect waves-light red" />
+                                    <input type="submit" id = "btn_save" ng-click ="add()" value="Book Ticket" class="btn-large waves-effect waves-light red" />    
                                 </div>
                             </div>
 
-                            <table class = "table highlight centered">
-                                <div class = "row center">
-                                    <thead>
-									<tr>
-                                        <th>Number</th>
-                                        <th>Train Name</th>
-                                        <th>Type</th>
-                                        <th>From Station</th>
-                                        <th>To Station</th>
-                                    </tr>
-									</thead>
-
-									<tbody>
-                                    <tr ng-repeat = "z in trains">
-                                        <td>{{z.trainno}}</td>
-                                        <td>{{z.name}}</td>
-                                        <td>{{z.type}}</td>                                        
-                                        <td>{{z.fromst}}</td>
-                                        <td>{{z.tost}}</td>
-                                        <td><input type="submit" value="Delete" ng-click = "remove($index, z.trainno)" 
-                                                   class="btn-large waves-effect waves-light red" /></td>
-                                    </tr>
-									<tbody>
-									
-									
-                                </div>								
-                            </table>
-
                             <div class = "row center">
                                 <div class = "col s12">
-                                    <a href = "home_admin.php" class="btn-large waves-effect waves-light red">Home</a>
-                                    <a href = "addstation.php" class="btn-large waves-effect waves-light red">Add a Station</a>
+                                    <a href = "home_user.php" class="btn-large waves-effect waves-light red">Home</a>
                                 </div>
                             </div>
 
@@ -135,36 +111,14 @@
 
         fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
 
-                // Get all records
-                $http({
-                    method: 'post',
-                    url: 'insertdeletetrains.php',
-                    data: {request_type: 1},
-
-                }).then(function successCallback(response) {
-                    $scope.trains = response.data;
-                });
-
                 // Add new record
                 $scope.add = function () {
                     $http({
                         method: 'post',
-                        url: 'insertdeletetrains.php',
-                        data: {trainno: $scope.trainno, name: $scope.name, type: $scope.type, fromst: $scope.fromst, tost: $scope.tost, request_type: 2},
+                        url: 'insertbooking.php',
+                        data: {trainno: $scope.trainno, name: $scope.name, class: $scope.class, fromst: $scope.fromst, tost: $scope.tost,phone: $scope.phone, request_type: 2},
                     }).then(function successCallback(response) {
-                        $scope.trains.push(response.data[0]);
-                    });
-                }
-
-                // Remove record
-                $scope.remove = function (index, trainno) {
-
-                    $http({
-                        method: 'post',
-                        url: 'insertdeletetrains.php',
-                        data: {trainno: trainno, request_type: 3},
-                    }).then(function successCallback(response) {
-                        $scope.trains.splice(index, 1);
+                        $scope.ticket.push(response.data[0]);
                     });
                 }
 
