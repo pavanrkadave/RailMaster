@@ -12,7 +12,7 @@
     </head>
     <body>
         <nav class="red lighten-1" role="navigation">
-             <div class="nav-wrapper container"><a id="logo-container" href="index.php" class="brand-logo">RailMaster 1.0 (Beta) </a>
+            <div class="nav-wrapper container"><a id="logo-container" href="index.php" class="brand-logo">RailMaster 1.0 (Beta) </a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#">Log Out</a></li>
                 </ul>
@@ -44,18 +44,18 @@
         </div>
 
 
-<!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
 
-<?php
-$con = mysqli_connect("localhost", "root", "", "collegedb");
+        <?php
+        $con = mysqli_connect("localhost", "root", "", "collegedb");
 
-if (mysqli_connect_errno()) {
-    echo "RailMaster Server is Down, Please Contact Pavan Hegde" . mysqli_connect_error();
-} else
-    echo "<br><br><br><br><b> Database System and Server Status : </b><i> Online. </i> ";
-    ?>
-</body>
+        if (mysqli_connect_errno()) {
+            echo "RailMaster Server is Down, Please Contact Pavan Hegde" . mysqli_connect_error();
+        } else
+            echo "<br><br><br><br><b> Database System and Server Status : </b><i> Online. </i> ";
+        ?>
+    </body>
 </html>

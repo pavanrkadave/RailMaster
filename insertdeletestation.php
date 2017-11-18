@@ -36,5 +36,4 @@ if ($request_type == 3) {
     mysqli_query($con, "delete from station where id=" . $id);
     echo 1;
 }
-
 ?>

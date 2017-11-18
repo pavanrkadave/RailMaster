@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost","root","","collegedb");
+$link = mysqli_connect("localhost", "root", "", "collegedb");
 ?>
 
 <!DOCTYPE html>
@@ -37,94 +37,94 @@ $link = mysqli_connect("localhost","root","","collegedb");
                         <div class="alert alert-error"></div>
 
                         <div ng-app='myapp' ng-controller="userCtrl" ng-init = "loadTrain()">
-                        <div class="row center">
+                            <div class="row center">
 
-                            <div class = "row center">
-                                <div class ="input-field col s12">
-                                    <input name="trainno" type="text" class = "validate" ng-model = "trainno" />
-                                    <label for = "name">Train Number</label>
-                                </div>
-                            </div>
-
-                        
-                            <div class = "row center">
-                                <div class ="input-field col s12">
-                                    <input name="name" type="text" class = "validate" ng-model = "name" />
-                                    <label for = "name">Train Name</label>
-                                </div>
-                            </div>
-								  
-                            <div class = "row center">
-                                <div class ="input-field col s12">
-                                    <input name="from_st" type="text" class = "validate" ng-model = "from_st" />
-                                    <label for = "from_st">From Station</label>
-                                </div>
-                            </div>
-
-                            <div class = "row center">
-                                <div class ="input-field col s12">
-                                    <input name="to_st" type="text" class = "validate" ng-model = "to_st" />
-                                    <label for = "to_st">To Station </label>
-                                </div>
-                            </div>
-
-                            <div class = "row center">
-                                <div class ="input-field col s12">
-                                    <input name="days" type="text" class = "validate" ng-model = "days" />
-                                    <label for = "days">Days</label>
-                                </div>
-                            </div>
-							
-							<div class = "row center">
-                                <div class ="input-field col s12">
-                                    <input name="deptime" type="text" class = "validate" ng-model = "deptime" />
-                                    <label for = "deptime">Departure Time</label>
-                                </div>
-                            </div>
-							
-							<div class = "row center">
-                                <div class ="input-field col s12">
-                                    <input name="arrival" type="text" class = "validate" ng-model = "arrival" />
-                                    <label for = "arrival">Arrival Time</label>
-                                </div>
-                            </div>
-							
-							
-
-                            <div class ="row center">
-                                <div class="col s12">
-                                    <input type="submit" id = "btn_save" ng-click ="add()" value="Save Schedule" class="btn-large waves-effect waves-light red" />
-                                </div>
-                            </div>
-
-                            <table class = "table highlight centered">
                                 <div class = "row center">
-                                    <thead>
-									<tr>
-                                        <th>Number</th>
-                                        <th>Train Name</th>
-                                        <th>From Station</th>
-                                        <th>To Station</th>
-                                        <th>Days</th>
-										<th>Departure Time</th>
-										<th>Arrival Time</th>
-                                    </tr>
-									</thead>
-
-									<tbody>
-                                    <tr ng-repeat = "a in schedule">
-                                        <td>{{a.trainno}}</td>
-                                        <td>{{a.name}}</td>
-                                        <td>{{a.from_st}}</td>
-                                        <td>{{a.to_st}}</td>
-                                        <td>{{a.days}}</td>
-										<td>{{a.deptime}}</td>
-										<td>{{a.arrival}}</td>
-                                        <td><input type="submit" value="Delete" ng-click = "remove($index, a.trainno)" 
-                                                   class="btn-large waves-effect waves-light red" /></td>
-                                    </tr>
-									</tbody>
+                                    <div class ="input-field col s12">
+                                        <input name="trainno" type="text" class = "validate" ng-model = "trainno" />
+                                        <label for = "name">Train Number</label>
+                                    </div>
                                 </div>
+
+
+                                <div class = "row center">
+                                    <div class ="input-field col s12">
+                                        <input name="name" type="text" class = "validate" ng-model = "name" />
+                                        <label for = "name">Train Name</label>
+                                    </div>
+                                </div>
+
+                                <div class = "row center">
+                                    <div class ="input-field col s12">
+                                        <input name="from_st" type="text" class = "validate" ng-model = "from_st" />
+                                        <label for = "from_st">From Station</label>
+                                    </div>
+                                </div>
+
+                                <div class = "row center">
+                                    <div class ="input-field col s12">
+                                        <input name="to_st" type="text" class = "validate" ng-model = "to_st" />
+                                        <label for = "to_st">To Station </label>
+                                    </div>
+                                </div>
+
+                                <div class = "row center">
+                                    <div class ="input-field col s12">
+                                        <input name="days" type="text" class = "validate" ng-model = "days" />
+                                        <label for = "days">Days</label>
+                                    </div>
+                                </div>
+
+                                <div class = "row center">
+                                    <div class ="input-field col s12">
+                                        <input name="deptime" type="text" class = "validate" ng-model = "deptime" />
+                                        <label for = "deptime">Departure Time</label>
+                                    </div>
+                                </div>
+
+                                <div class = "row center">
+                                    <div class ="input-field col s12">
+                                        <input name="arrival" type="text" class = "validate" ng-model = "arrival" />
+                                        <label for = "arrival">Arrival Time</label>
+                                    </div>
+                                </div>
+
+
+
+                                <div class ="row center">
+                                    <div class="col s12">
+                                        <input type="submit" id = "btn_save" ng-click ="add()" value="Save Schedule" class="btn-large waves-effect waves-light red" />
+                                    </div>
+                                </div>
+
+                                <table class = "table highlight centered">
+                                    <div class = "row center">
+                                        <thead>
+                                            <tr>
+                                                <th>Number</th>
+                                                <th>Train Name</th>
+                                                <th>From Station</th>
+                                                <th>To Station</th>
+                                                <th>Days</th>
+                                                <th>Departure Time</th>
+                                                <th>Arrival Time</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr ng-repeat = "a in schedule">
+                                                <td>{{a.trainno}}</td>
+                                                <td>{{a.name}}</td>
+                                                <td>{{a.from_st}}</td>
+                                                <td>{{a.to_st}}</td>
+                                                <td>{{a.days}}</td>
+                                                <td>{{a.deptime}}</td>
+                                                <td>{{a.arrival}}</td>
+                                                <td><input type="submit" value="Delete" ng-click = "remove($index, a.trainno)" 
+                                                           class="btn-large waves-effect waves-light red" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </div>
                                 </table>								
                             </div>
 
@@ -132,72 +132,72 @@ $link = mysqli_connect("localhost","root","","collegedb");
                                 <div class = "col s12">
                                     <a href = "home_admin.php" class="btn-large waves-effect waves-light red">Home</a>
                                     <a href = "addstation.php" class="btn-large waves-effect waves-light red">Add a Station</a>
-									<a href = "addtrains.php" class="btn-large waves-effect waves-light red">Add a Train</a>
+                                    <a href = "addtrains.php" class="btn-large waves-effect waves-light red">Add a Train</a>
                                 </div>
                             </div>
 
                     </form>                   
+                </div>
             </div>
-        </div>
 
-        <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
-        <script src="js/script.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>  
-        <link rel="stylesheet" href ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+            <!--  Scripts-->
+            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script src="js/materialize.js"></script>
+            <script src="js/init.js"></script>
+            <script src="js/script.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>  
+            <link rel="stylesheet" href ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     </body>
 </html>
 
 <script>
-     $(document).ready(function() {
-    $('select').material_select();
-  });
-var fetch = angular.module('myapp', []);
+                                                    $(document).ready(function () {
+                                                        $('select').material_select();
+                                                    });
+                                                    var fetch = angular.module('myapp', []);
 
-fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
+                                                    fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
 
-     $scope.loadTrain = function(){  
-           $http.get("load_train.php")  
-           .success(function(data){  
-                $scope.trains = data;  
-           })  
-      }  
+                                                            $scope.loadTrain = function () {
+                                                                $http.get("load_train.php")
+                                                                        .success(function (data) {
+                                                                            $scope.trains = data;
+                                                                        })
+                                                            }
 
-        // Get all records
-        $http({
-            method: 'post',
-            url: 'insertdeleteschedule.php',
-            data: {request_type: 1},
+                                                            // Get all records
+                                                            $http({
+                                                                method: 'post',
+                                                                url: 'insertdeleteschedule.php',
+                                                                data: {request_type: 1},
 
-        }).then(function successCallback(response) {
-            $scope.schedule = response.data;
-        });
+                                                            }).then(function successCallback(response) {
+                                                                $scope.schedule = response.data;
+                                                            });
 
-        // Add new record
-        $scope.add = function () {
-            $http({
-                method: 'post',
-                url: 'insertdeleteschedule.php',
-                data: {trainno:$scope.trainno, name: $scope.name, from_st: $scope.from_st, to_st: $scope.to_st, days: $scope.days,deptime: $scope.deptime,arrival:$scope.arrival,request_type: 2},
-            }).then(function successCallback(response) {
-                $scope.schedule.push(response.data[0]);
-            });
-        }
+                                                            // Add new record
+                                                            $scope.add = function () {
+                                                                $http({
+                                                                    method: 'post',
+                                                                    url: 'insertdeleteschedule.php',
+                                                                    data: {trainno: $scope.trainno, name: $scope.name, from_st: $scope.from_st, to_st: $scope.to_st, days: $scope.days, deptime: $scope.deptime, arrival: $scope.arrival, request_type: 2},
+                                                                }).then(function successCallback(response) {
+                                                                    $scope.schedule.push(response.data[0]);
+                                                                });
+                                                            }
 
-        // Remove record
-        $scope.remove = function (index, trainno) {
+                                                            // Remove record
+                                                            $scope.remove = function (index, trainno) {
 
-            $http({
-                method: 'post',
-                url: 'insertdeleteschedule.php',
-                data: {trainno: trainno, request_type: 3},
-            }).then(function successCallback(response) {
-                $scope.schedule.splice(index, 1);
-            });
-        }
+                                                                $http({
+                                                                    method: 'post',
+                                                                    url: 'insertdeleteschedule.php',
+                                                                    data: {trainno: trainno, request_type: 3},
+                                                                }).then(function successCallback(response) {
+                                                                    $scope.schedule.splice(index, 1);
+                                                                });
+                                                            }
 
-    }]);
+                                                        }]);
 
 </script>

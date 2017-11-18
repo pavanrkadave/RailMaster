@@ -104,24 +104,23 @@
 
 <script>
 
-     $(document).ready(function() {
-    $('select').material_select();
-  });
-        var fetch = angular.module('myapp', []);
+                                        $(document).ready(function() {
+                                        $('select').material_select();
+                                        });
+                                        var fetch = angular.module('myapp', []);
+                                        fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
 
-        fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
+                                        // Add new record
+                                        $scope.add = function () {
+                                        $http({
+                                        method: 'post',
+                                                url: 'insertbooking.php',
+                                                data: {trainno: $scope.trainno, name: $scope.name, class: $scope.class, fromst: $scope.fromst, tost: $scope.tost, phone: $scope.phone, request_type: 2},
+                                        }).then(function successCallback(response) {
+                                        $scope.ticket.push(response.data[0]);
+                                        });
+                                        }
 
-                // Add new record
-                $scope.add = function () {
-                    $http({
-                        method: 'post',
-                        url: 'insertbooking.php',
-                        data: {trainno: $scope.trainno, name: $scope.name, class: $scope.class, fromst: $scope.fromst, tost: $scope.tost,phone: $scope.phone, request_type: 2},
-                    }).then(function successCallback(response) {
-                        $scope.ticket.push(response.data[0]);
-                    });
-                }
-
-            }]);
+                                        }]);
 
 </script>

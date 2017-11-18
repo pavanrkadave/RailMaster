@@ -14,26 +14,26 @@
 
         <nav class="red lighten-1" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RailMaster 1.0 (Beta) </a>
-				
-				<ul class="right hide-on-med-and-down">
+
+                <ul class="right hide-on-med-and-down">
                     <li><a href="login_admin.php">Admin Login</a></li>
-					<li><a href="login_user.php">User Login</a></li>      
+                    <li><a href="login_user.php">User Login</a></li>      
                 </ul>
-				
-				<ul id="nav-mobile" class="side-nav">
+
+                <ul id="nav-mobile" class="side-nav">
                     <li><a href="login_admin.php">Admin Login</a></li>
-					<li><a href="login_user.php">User Login</a></li>
+                    <li><a href="login_user.php">User Login</a></li>
                 </ul>				
 
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
-		
-		
+
+
 
         <div class="section no-pad-bot" id="index-banner">			
-			
-			<div class = "container">
+
+            <div class = "container">
                 <br><br>
                 <h1 class="header center red-text">Welcome to RailMaster</h1>
                 <div class="row center">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="container">
-		
+
             <div class="section">
 
                 <!--   Icon Section   -->
@@ -80,10 +80,10 @@
                         </div>
                     </div>
                 </div>
-				</div>
-
             </div>
-            <br><br>
+
+        </div>
+        <br><br>
 
         <footer class="page-footer red lighten-1">
             <div class="container">
@@ -91,7 +91,7 @@
                     <div class="col l6 s12">
                         <h5 class="white-text">About RailMaster</h5>
                         <p class="grey-text text-lighten-4">RailMaster is a responsive college database system developed by <a href = "http://facebook.com/pavanrkadave" 
-						class = "yellow-text">Pavan Hegde</a> and <a class = "yellow-text" href = "http://facebook.com/pavanrkadav">Mehul Mullur</a>.</p>
+                                                                                                                               class = "yellow-text">Pavan Hegde</a> and <a class = "yellow-text" href = "http://facebook.com/pavanrkadav">Mehul Mullur</a>.</p>
 
 
                     </div>

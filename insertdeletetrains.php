@@ -39,5 +39,4 @@ if ($request_type == 3) {
     mysqli_query($con, "delete from trains where trainno=" . $trainno);
     echo 1;
 }
-
 ?>

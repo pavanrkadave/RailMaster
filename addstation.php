@@ -19,7 +19,7 @@
         <div class="body-content">
             <div class="section no-pad-bot">
                 <div class = "container">
-   
+
                     <h1 class = "header center red-text">Database Home Page</h1>
 
                     <div class = "row center">
@@ -64,22 +64,22 @@
                             <table class = "table highlight centered">
                                 <div class = "row center">
                                     <thead>
-									<tr>
-                                        <th>Seq No</th>
-                                        <th>SID</th>
-                                        <th>Station Name</th>
-                                    </tr>
-									</thead>
-									
-									<tbody>
-                                    <tr ng-repeat = "y in station">
-                                        <td>{{y.id}}</td>
-                                        <td>{{y.sid}}</td>
-                                        <td>{{y.sname}}</td>
-                                        <td><input type="submit" value="Delete" ng-click = "remove($index, y.id)" 
-                                                   class="btn-large waves-effect waves-light red" /></td>
-                                    </tr>
-									</tbody>
+                                        <tr>
+                                            <th>Seq No</th>
+                                            <th>SID</th>
+                                            <th>Station Name</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr ng-repeat = "y in station">
+                                            <td>{{y.id}}</td>
+                                            <td>{{y.sid}}</td>
+                                            <td>{{y.sname}}</td>
+                                            <td><input type="submit" value="Delete" ng-click = "remove($index, y.id)" 
+                                                       class="btn-large waves-effect waves-light red" /></td>
+                                        </tr>
+                                    </tbody>
 
                                 </div>		   
                             </table>
@@ -108,41 +108,41 @@
 
 
 <script>
-    var fetch = angular.module('myapp', []);
+                                                var fetch = angular.module('myapp', []);
 
-    fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
+                                                fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
 
-            // Get all records
-            $http({
-                method: 'post',
-                url: 'insertdeletestation.php',
-                data: {request_type: 1},
-            }).then(function successCallback(response) {
-                $scope.station = response.data;
-            });
+                                                        // Get all records
+                                                        $http({
+                                                            method: 'post',
+                                                            url: 'insertdeletestation.php',
+                                                            data: {request_type: 1},
+                                                        }).then(function successCallback(response) {
+                                                            $scope.station = response.data;
+                                                        });
 
-            // Add new record
-            $scope.add = function () {
-                $http({
-                    method: 'post',
-                    url: 'insertdeletestation.php',
-                    data: {id: $scope.id, sid: $scope.sid, sname: $scope.sname, request_type: 2},
-                }).then(function successCallback(response) {
-                    $scope.station.push(response.data[0]);
-                });
-            }
+                                                        // Add new record
+                                                        $scope.add = function () {
+                                                            $http({
+                                                                method: 'post',
+                                                                url: 'insertdeletestation.php',
+                                                                data: {id: $scope.id, sid: $scope.sid, sname: $scope.sname, request_type: 2},
+                                                            }).then(function successCallback(response) {
+                                                                $scope.station.push(response.data[0]);
+                                                            });
+                                                        }
 
-            // Remove record
-            $scope.remove = function (index, id) {
-                $http({
-                    method: 'post',
-                    url: 'insertdeletestation.php',
-                    data: {id: id, request_type: 3},
-                }).then(function successCallback(response) {
-                    $scope.station.splice(index, 1);
-                });
-            }
+                                                        // Remove record
+                                                        $scope.remove = function (index, id) {
+                                                            $http({
+                                                                method: 'post',
+                                                                url: 'insertdeletestation.php',
+                                                                data: {id: id, request_type: 3},
+                                                            }).then(function successCallback(response) {
+                                                                $scope.station.splice(index, 1);
+                                                            });
+                                                        }
 
-        }]);
+                                                    }]);
 
 </script>

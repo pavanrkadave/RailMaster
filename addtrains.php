@@ -55,7 +55,7 @@
                                 </div>
                             </div>
 
-                              
+
 
                             <div class = "row center">
                                 <div class ="input-field col s12">
@@ -80,28 +80,28 @@
                             <table class = "table highlight centered">
                                 <div class = "row center">
                                     <thead>
-									<tr>
-                                        <th>Number</th>
-                                        <th>Train Name</th>
-                                        <th>Type</th>
-                                        <th>From Station</th>
-                                        <th>To Station</th>
-                                    </tr>
-									</thead>
+                                        <tr>
+                                            <th>Number</th>
+                                            <th>Train Name</th>
+                                            <th>Type</th>
+                                            <th>From Station</th>
+                                            <th>To Station</th>
+                                        </tr>
+                                    </thead>
 
-									<tbody>
-                                    <tr ng-repeat = "z in trains">
-                                        <td>{{z.trainno}}</td>
-                                        <td>{{z.name}}</td>
-                                        <td>{{z.type}}</td>                                        
-                                        <td>{{z.fromst}}</td>
-                                        <td>{{z.tost}}</td>
-                                        <td><input type="submit" value="Delete" ng-click = "remove($index, z.trainno)" 
-                                                   class="btn-large waves-effect waves-light red" /></td>
-                                    </tr>
-									<tbody>
-									
-									
+                                    <tbody>
+                                        <tr ng-repeat = "z in trains">
+                                            <td>{{z.trainno}}</td>
+                                            <td>{{z.name}}</td>
+                                            <td>{{z.type}}</td>                                        
+                                            <td>{{z.fromst}}</td>
+                                            <td>{{z.tost}}</td>
+                                            <td><input type="submit" value="Delete" ng-click = "remove($index, z.trainno)" 
+                                                       class="btn-large waves-effect waves-light red" /></td>
+                                        </tr>
+                                    <tbody>
+
+
                                 </div>								
                             </table>
 
@@ -128,46 +128,46 @@
 
 <script>
 
-     $(document).ready(function() {
-    $('select').material_select();
-  });
-        var fetch = angular.module('myapp', []);
+                                                $(document).ready(function () {
+                                                    $('select').material_select();
+                                                });
+                                                var fetch = angular.module('myapp', []);
 
-        fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
+                                                fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
 
-                // Get all records
-                $http({
-                    method: 'post',
-                    url: 'insertdeletetrains.php',
-                    data: {request_type: 1},
+                                                        // Get all records
+                                                        $http({
+                                                            method: 'post',
+                                                            url: 'insertdeletetrains.php',
+                                                            data: {request_type: 1},
 
-                }).then(function successCallback(response) {
-                    $scope.trains = response.data;
-                });
+                                                        }).then(function successCallback(response) {
+                                                            $scope.trains = response.data;
+                                                        });
 
-                // Add new record
-                $scope.add = function () {
-                    $http({
-                        method: 'post',
-                        url: 'insertdeletetrains.php',
-                        data: {trainno: $scope.trainno, name: $scope.name, type: $scope.type, fromst: $scope.fromst, tost: $scope.tost, request_type: 2},
-                    }).then(function successCallback(response) {
-                        $scope.trains.push(response.data[0]);
-                    });
-                }
+                                                        // Add new record
+                                                        $scope.add = function () {
+                                                            $http({
+                                                                method: 'post',
+                                                                url: 'insertdeletetrains.php',
+                                                                data: {trainno: $scope.trainno, name: $scope.name, type: $scope.type, fromst: $scope.fromst, tost: $scope.tost, request_type: 2},
+                                                            }).then(function successCallback(response) {
+                                                                $scope.trains.push(response.data[0]);
+                                                            });
+                                                        }
 
-                // Remove record
-                $scope.remove = function (index, trainno) {
+                                                        // Remove record
+                                                        $scope.remove = function (index, trainno) {
 
-                    $http({
-                        method: 'post',
-                        url: 'insertdeletetrains.php',
-                        data: {trainno: trainno, request_type: 3},
-                    }).then(function successCallback(response) {
-                        $scope.trains.splice(index, 1);
-                    });
-                }
+                                                            $http({
+                                                                method: 'post',
+                                                                url: 'insertdeletetrains.php',
+                                                                data: {trainno: trainno, request_type: 3},
+                                                            }).then(function successCallback(response) {
+                                                                $scope.trains.splice(index, 1);
+                                                            });
+                                                        }
 
-            }]);
+                                                    }]);
 
 </script>

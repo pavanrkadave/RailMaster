@@ -12,7 +12,7 @@ if ($request_type == 1) {
     $data = array();
 
     while ($row = mysqli_fetch_array($sel)) {
-        $data[] = array("trainno" => $row['trainno'], "name" => $row['name'], "from_st" => $row['from_st'],"to_st" => $row['to_st'],"days" => $row['days'],"deptime" => $row['deptime'],"arrival" => $row['arrival']);
+        $data[] = array("trainno" => $row['trainno'], "name" => $row['name'], "from_st" => $row['from_st'], "to_st" => $row['to_st'], "days" => $row['days'], "deptime" => $row['deptime'], "arrival" => $row['arrival']);
     }
     echo json_encode($data);
 }
@@ -27,9 +27,9 @@ if ($request_type == 2) {
     $deptime = $data->deptime;
     $arrival = $data->arrival;
 
-    mysqli_query($con, "insert into schedule(trainno,name,from_st,to_st,days,deptime,arrival) values('" . $trainno . "','" . $name . "','" . $from_st . "','". $to_st ."','". $days . "','".$deptime."','".$arrival."')");
+    mysqli_query($con, "insert into schedule(trainno,name,from_st,to_st,days,deptime,arrival) values('" . $trainno . "','" . $name . "','" . $from_st . "','" . $to_st . "','" . $days . "','" . $deptime . "','" . $arrival . "')");
 
-    $return_arr[] = array("trainno" => $trainno, "name" => $name, "from_st" => $from_st,"to_st"=>$to_st,"days"=>$days,"deptime"=>$deptime,"arrival"=>$arrival);
+    $return_arr[] = array("trainno" => $trainno, "name" => $name, "from_st" => $from_st, "to_st" => $to_st, "days" => $days, "deptime" => $deptime, "arrival" => $arrival);
     echo json_encode($return_arr);
 }
 

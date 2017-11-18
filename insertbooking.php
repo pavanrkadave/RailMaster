@@ -17,10 +17,8 @@ if ($request_type == 2) {
 
     mysqli_query($con, "insert into ticket(name,trainno,fromst,tost,phone,class) values('" . $name . "','" . $trainno . "','" . $fromst . "','" . $tost . "','" . $phone . "','" . $class . "')");
 
-    $return_arr[] = array("name" => $name, "trainno" => $trainno, "fromst" => $fromst,"tost" => $tost,"phone" => $phone,"class" => $class);
+    $return_arr[] = array("name" => $name, "trainno" => $trainno, "fromst" => $fromst, "tost" => $tost, "phone" => $phone, "class" => $class);
     echo json_encode($return_arr);
-
-
 }
 
 // Delete record
@@ -30,5 +28,4 @@ if ($request_type == 3) {
     mysqli_query($con, "delete from station where id=" . $id);
     echo 1;
 }
-
 ?>
