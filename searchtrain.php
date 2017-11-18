@@ -36,7 +36,7 @@
 
                     <div class="row center">
                         <div class="input-field col s12">
-                            <input type="text" name="search_text" id="search_text" class="validate" />
+                            <input type="number" name="search_text" id="search_text" class="validate" />
                             <label for="icon_prefix">Enter a Train Number To Search.</label>
                         </div>
                     </div>

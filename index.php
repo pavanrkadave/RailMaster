@@ -40,7 +40,7 @@
                     <h5 class="header col s12 light">A Advanced Data Management Solution. </h5>
                 </div>
                 <div class="row center">
-                    <a href="#" id="download-button" class="btn-large waves-effect waves-light red">Login To Get Started</a>
+                     <a class="btn-large waves-effect waves-light red" onclick="Materialize.toast('Login Here', 4000,'',function(){alert('Your toast was dismissed')})">Login To Get Started</a>
                 </div>
                 <br><br>
 
@@ -56,9 +56,9 @@
                     <div class="col s12 m4">
                         <div class="icon-block">
                             <h2 class="center red-text"><i class="material-icons">flash_on</i></h2>
-                            <h5 class="center red-text">Faster Speeds</h5>
+                            <h5 class="center red-text">Fast Data Access</h5>
 
-                            <p class="light black-text">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+                            <p class="light black-text">We did the most of the heavy lifting in order to give fast data access speeds for the users.We have used all latest technologies like <b>PHP 7.0, AJAX, AngularJS, HTML5, jQuery, MariaDB (MySQL)</b> in order to achieve high speed data access. </p>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@
                             <h2 class="center red-text"><i class="material-icons">group</i></h2>
                             <h5 class="center red-text">Best User Experience</h5>
 
-                            <p class="light black-text">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+                            <p class="light black-text">User Experience is what matters the most in all applications.In RailMaster we have used <b>Materialize CSS, AngularJS, AJAX </b> which are <i>Open Source</i> to enhance the user experience to another level.</p>
                         </div>
                     </div>
 
@@ -75,7 +75,6 @@
                         <div class="icon-block">
                             <h2 class="center red-text"><i class="material-icons">settings</i></h2>
                             <h5 class="center red-text">Secure</h5>
-
                             <p class="light black-text">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
                         </div>
                     </div>
@@ -90,9 +89,7 @@
                 <div class="row">
                     <div class="col l6 s12">
                         <h5 class="white-text">About RailMaster</h5>
-                        <p class="grey-text text-lighten-4">RailMaster is a responsive college database system developed by <a href = "http://facebook.com/pavanrkadave" 
-                                                                                                                               class = "yellow-text">Pavan Hegde</a> and <a class = "yellow-text" href = "http://facebook.com/pavanrkadav">Mehul Mullur</a>.</p>
-
+                        <p class="grey-text text-lighten-4">RailMaster is a responsive college database system developed by <a href = "http://facebook.com/pavanrkadave" class = "yellow-text">Pavan Hegde</a> and <a class = "yellow-text" href = "http://facebook.com/pavanrkadav">Mehul Mullur</a>.</p>
 
                     </div>
                     <div class="col l3 s12">

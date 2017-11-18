@@ -42,9 +42,13 @@
                         </div>
                     </div>
 
+                    <div class="row center">
+                    <a href = "registeruser.php" class="header teal-text">Dont Have an Account? Register here.</a>
+                    </div>
+
                     <div class ="row center">
                         <div class="col s12">
-                            <input type="submit" value="Save" name="register" class="btn-large waves-effect waves-light red" />
+                            <input type="submit" value="Login" name="register" class="btn-large waves-effect waves-light red" />
                         </div>
                     </div>
 

@@ -9,6 +9,17 @@ $link = mysqli_connect("localhost", "root", "", "collegedb");
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
         <title>RailMaster | Schedule</title>
 
+         <!--  Scripts-->
+            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script src="js/materialize.js"></script>
+            <script src="js/init.js"></script>
+            <script src="js/script.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
+            <link rel="stylesheet" href ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -41,7 +52,7 @@ $link = mysqli_connect("localhost", "root", "", "collegedb");
 
                                 <div class = "row center">
                                     <div class ="input-field col s12">
-                                        <input name="trainno" type="text" class = "validate" ng-model = "trainno" />
+                                        <input name="trainno" id="trainno" type="text" class = "validate" ng-model = "trainno" autocomplete="off" />
                                         <label for = "name">Train Number</label>
                                     </div>
                                 </div>
@@ -49,7 +60,7 @@ $link = mysqli_connect("localhost", "root", "", "collegedb");
 
                                 <div class = "row center">
                                     <div class ="input-field col s12">
-                                        <input name="name" type="text" class = "validate" ng-model = "name" />
+                                        <input name="name" id="name" type="text" class = "validate" ng-model = "name" />
                                         <label for = "name">Train Name</label>
                                     </div>
                                 </div>
@@ -139,65 +150,104 @@ $link = mysqli_connect("localhost", "root", "", "collegedb");
                     </form>                   
                 </div>
             </div>
-
-            <!--  Scripts-->
-            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-            <script src="js/materialize.js"></script>
-            <script src="js/init.js"></script>
-            <script src="js/script.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>  
-            <link rel="stylesheet" href ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     </body>
 </html>
 
 <script>
-                                                    $(document).ready(function () {
-                                                        $('select').material_select();
-                                                    });
-                                                    var fetch = angular.module('myapp', []);
 
-                                                    fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
+            $(document).ready(function(){
+         
+         $('#trainno').typeahead({
+          source: function(query, result)
+          {
+           $.ajax({
+            url:"fetchtrainno.php",
+            method:"POST",
+            data:{query:query},
+            dataType:"json",
+            success:function(data)
+            {
+             result($.map(data, function(item){
+              return item;
+             }));
+            }
+           })
+          }
+         });
+         
+        });
 
-                                                            $scope.loadTrain = function () {
-                                                                $http.get("load_train.php")
-                                                                        .success(function (data) {
-                                                                            $scope.trains = data;
-                                                                        })
-                                                            }
 
-                                                            // Get all records
-                                                            $http({
-                                                                method: 'post',
-                                                                url: 'insertdeleteschedule.php',
-                                                                data: {request_type: 1},
+            $(document).ready(function(){
+         
+         $('#name').typeahead({
+          source: function(query, result)
+          {
+           $.ajax({
+            url:"fetchtrainname.php",
+            method:"POST",
+            data:{query:query},
+            dataType:"json",
+            success:function(data)
+            {
+             result($.map(data, function(item){
+              return item;
+             }));
+            }
+           })
+          }
+         });
+         
+        });
 
-                                                            }).then(function successCallback(response) {
-                                                                $scope.schedule = response.data;
-                                                            });
 
-                                                            // Add new record
-                                                            $scope.add = function () {
-                                                                $http({
-                                                                    method: 'post',
-                                                                    url: 'insertdeleteschedule.php',
-                                                                    data: {trainno: $scope.trainno, name: $scope.name, from_st: $scope.from_st, to_st: $scope.to_st, days: $scope.days, deptime: $scope.deptime, arrival: $scope.arrival, request_type: 2},
-                                                                }).then(function successCallback(response) {
-                                                                    $scope.schedule.push(response.data[0]);
-                                                                });
-                                                            }
+    $(document).ready(function () {
+    $('select').material_select();
+    });
+    var fetch = angular.module('myapp', []);
 
-                                                            // Remove record
-                                                            $scope.remove = function (index, trainno) {
+    fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
 
-                                                                $http({
-                                                                    method: 'post',
-                                                                    url: 'insertdeleteschedule.php',
-                                                                    data: {trainno: trainno, request_type: 3},
-                                                                }).then(function successCallback(response) {
-                                                                    $scope.schedule.splice(index, 1);
-                                                                });
-                                                            }
+    $scope.loadTrain = function () {
+        $http.get("load_train.php")
+                .success(function (data) {
+                    $scope.trains = data;
+                })
+    }
 
-                                                        }]);
+    // Get all records
+    $http({
+        method: 'post',
+        url: 'insertdeleteschedule.php',
+        data: {request_type: 1},
+
+    }).then(function successCallback(response) {
+        $scope.schedule = response.data;
+    });
+
+    // Add new record
+    $scope.add = function () {
+        $http({
+            method: 'post',
+            url: 'insertdeleteschedule.php',
+            data: {trainno: $scope.trainno, name: $scope.name, from_st: $scope.from_st, to_st: $scope.to_st, days: $scope.days, deptime: $scope.deptime, arrival: $scope.arrival, request_type: 2},
+        }).then(function successCallback(response) {
+            $scope.schedule.push(response.data[0]);
+        });
+    }
+
+    // Remove record
+    $scope.remove = function (index, trainno) {
+
+        $http({
+            method: 'post',
+            url: 'insertdeleteschedule.php',
+            data: {trainno: trainno, request_type: 3},
+        }).then(function successCallback(response) {
+            $scope.schedule.splice(index, 1);
+        });
+    }
+
+    }]);
 
 </script>
