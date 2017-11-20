@@ -91,7 +91,6 @@
                                 <a href = "addtrains.php" class="btn-large waves-effect waves-light red">Add a Train</a>
                             </div>
                         </div>
-
                     </form>
 
                 </div>

@@ -2907,7 +2907,7 @@ table, th, td {
 }
 
 table {
-    width: 100%;
+    width: 120%;
     display: table;
 }
 
@@ -5425,6 +5425,7 @@ button.btn-floating {
 }
 
 .btn-large {
+    width: 36px;
     height: 54px;
     line-height: 54px;
 }

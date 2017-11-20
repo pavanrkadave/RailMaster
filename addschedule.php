@@ -1,253 +1,230 @@
-<?php
-$link = mysqli_connect("localhost", "root", "", "collegedb");
-?>
+<?php  
+ $connect = mysqli_connect("localhost", "root", "", "collegedb");  
+ $query = "SELECT * FROM trains ORDER BY trainno ASC";  
+ $result = mysqli_query($connect, $query);  
+ ?>  
+ <!DOCTYPE html>  
+ <html>  
+      <head>  
+           <title>RailMaster | Schedules</title>  
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-        <title>RailMaster | Schedule</title>
 
-         <!--  Scripts-->
-            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-            <script src="js/materialize.js"></script>
-            <script src="js/init.js"></script>
-            <script src="js/script.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-
-            <link rel="stylesheet" href ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-
-        <!-- CSS  -->
+            <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    </head>
-    <!--
-    <link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="style.css" type="text/css">
-    -->
-    <body>
-        <nav class="red lighten-1" role="navigation">
+         
+      </head>  
+      <body> 
+      <nav class="red lighten-1" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="home_admin.php" class="brand-logo">RailMaster 1.0 (Beta) </a></div>
-        </nav>
+        </nav> 
+           <br /><br />  
+           <div class="container">  
+                <h3 align="center">Availabe Trains.</h3>  
+                <br />  
+                <div  class="table-responsive">  
+                     
+                     <div align="center">  
+                          <a href = "home_admin.php" class="btn btn-warning red">Go To Home</a>  
+                     </div>
 
-        <div class="body-content">
-            <div class="section no-pad-bot">
-                <div class = "container">
-                    <br><br>
-                    <h1 class = "header center red-text">Schedule Home Page</h1>
+                     <br />  
+                     <div  id="train_table" >  
+                          <table  class="table centered highlight">  
+                               <thead>   
+                                    <th>Train Number</th>  
+                                    <th>Name</th>  
+                                    <th>Type</th>
+                                    <th>From Station</th>
+                                    <th>To Station</th>  
+                               </thead>  
+                               <?php  
+                               while($row = mysqli_fetch_array($result))  
+                               {  
+                               ?>  
+                               <tbody>  
+                                    <td><?php echo $row["trainno"]; ?></td>
+                                    <td><?php echo $row["name"]; ?></td>
+                                    <td><?php echo $row["type"]; ?></td>
+                                    <td><?php echo $row["fromst"]; ?></td>
+                                    <td><?php echo $row["tost"]; ?></td>  
+                                    <td><input type="button" name="edit" value="Add Schedule" id="<?php echo $row["id"]; ?>" class="btn btn-info edit_data red" /></td>  
+                                    <td><input type="button" name="view" value="View Schedule" id="<?php echo $row["id"]; ?>" class="btn btn-info view_data red" /></td>  
+                               </tbody>  
+                               <?php  
+                               }  
+                               ?>  
+                          </table>  
+                     </div>  
+                </div>  
+           </div>  
+      </body>  
+ </html>  
 
-                    <div class = "row center">
-                        <h5 class = "header col s12 light">Enter a Schedule to store</h5>
-                    </div>
+ <div id="dataModal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                     <h4 class="modal-title">Train Details</h4>  
+                </div>  
+                <div class="modal-body" id="train_detail">  
+                </div>  
+                <div class="modal-footer">  
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                </div>  
+           </div>  
+      </div>  
+ </div>
 
-                    <form class="col s12" method="post" enctype="multipart/form-data" autocomplete="off">
-                        <div class="alert alert-error"></div>
+ <div id="add_data_Modal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                     <h4 class="modal-title">Update Trains</h4>  
+                </div>  
+                <div class="modal-body">  
+                     <form method="post" id="insert_form">  
+                          <label>Train Number</label>  
+                          <input type="text" name="trainno" id="trainno" class="form-control" />  
+                          <br />  
+                          <label>Name</label>  
+                          <input type="text" name="name" id="name" class="form-control"/>  
+                          <br />  
+                          <label>Type</label>  
+                          <select name="type" id="type" class="form-control">  
+                               <option value="Express">Express</option>  
+                               <option value="Shatabdhi">Shatabdhi</option>
+                               <option value="Local">Local</option>
+                               <option value="Intercity">Intercity</option>
+                               <option value="SuperFast">SuperFast</option>  
+                          </select>  
+                          <br />  
+                          <label>From Station</label>  
+                          <input type="text" name="fromst" id="fromst" class="form-control" />  
+                          <br />  
+                          <label>To Station</label>  
+                          <input type="text" name="tost" id="tost" class="form-control" />  
+                          <br/>
+                          <label>days</label>  
+                          <select name="days" id="days" class="form-control">  
+                               <option value="Weekdays">Weekdays</option>  
+                               <option value="Weekends">Weekends</option>
+                               <option value="All Days">All Days</option>
+                               <option value="Twice a Week">Twice a Week</option>  
+                          </select>  
+                          <br />  
+                          <label>Departure Time</label>  
+                          <input type="text" name="dep" id="dep" class="form-control" />  
+                          <br/>
+                          <label>Arrival Time</label>  
+                          <input type="text" name="arr" id="arr" class="form-control" />  
+                          <br/>  
+                          <input type="hidden" name="id" id="id" />  
+                          <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  
+                     </form>  
+                </div>  
+                <div class="modal-footer">  
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                </div>  
+           </div>  
+      </div>  
+ </div>  
+ <script>
+ $(document).ready(function(){
 
-                        <div ng-app='myapp' ng-controller="userCtrl" ng-init = "loadTrain()">
-                            <div class="row center">
+      $('#add').click(function(){  
+           $('#insert').val("Insert");  
+           $('#insert_form')[0].reset();  
+      });
 
-                                <div class = "row center">
-                                    <div class ="input-field col s12">
-                                        <input name="trainno" id="trainno" type="text" class = "validate" ng-model = "trainno" autocomplete="off" />
-                                        <label for = "name">Train Number</label>
-                                    </div>
-                                </div>
+      $(document).on('click', '.edit_data', function(){  
+           var id = $(this).attr("id");  
+           $.ajax({  
+                url:"fetch.php",  
+                method:"POST",  
+                data:{id:id},  
+                dataType:"json",  
+                success:function(data){  
+                     $('#trainno').val(data.trainno);  
+                     $('#name').val(data.name);  
+                     $('#type').val(data.type);  
+                     $('#fromst').val(data.fromst);  
+                     $('#tost').val(data.tost);
+                     $('#days').val(data.days);
+                     $('#dep').val(data.deptime);
+                     $('#arr').val(data.arrival);  
+                     $('#insert').val("Update");  
+                     $('#add_data_Modal').modal('show');  
+                }  
+           });  
+      });  
+      $('#insert_form').on("submit", function(event){  
+           event.preventDefault();  
+           if($('#trainno').val() == "")  
+           {  
+                alert("Number is required");  
+           }  
+           else if($('#name').val() == '')  
+           {  
+                alert("Name is required");  
+           }  
+           else if($('#fromst').val() == '')  
+           {  
+                alert("From St is required");  
+           }  
+           else if($('#tost').val() == '')  
+           {  
+                alert("To Station is required");  
+           }
+           else if($('#days').val() == '')  
+           {  
+                alert("Days is required");  
+           }  
+           else if($('#dep').val() == '')  
+           {  
+                alert("Departure Time is required");  
+           }  
+           else if($('#arr').val() == '')  
+           {  
+                alert("Arrival Time is required");  
+           }     
+           else  
+           {  
+                $.ajax({  
+                     url:"insert.php",  
+                     method:"POST",  
+                     data:$('#insert_form').serialize(),  
+                     beforeSend:function(){  
+                          $('#insert').val("Inserting");  
+                     },  
+                     success:function(data){  
+                          $('#insert_form')[0].reset();  
+                          $('#add_data_Modal').modal('hide');  
+                          $('#train_table').html(data);  
+                     }  
+                });  
+           }  
+      });  
+      $(document).on('click', '.view_data', function(){  
+           var id = $(this).attr("id");  
+           if(id != '')  
+           {  
+                $.ajax({  
+                     url:"select.php",  
+                     method:"POST",  
+                     data:{id:id},  
+                     success:function(data){  
+                          $('#train_detail').html(data);  
+                          $('#dataModal').modal('show');  
+                     }  
+                });  
+           }            
+      });  
+ }); 
 
-
-                                <div class = "row center">
-                                    <div class ="input-field col s12">
-                                        <input name="name" id="name" type="text" class = "validate" ng-model = "name" />
-                                        <label for = "name">Train Name</label>
-                                    </div>
-                                </div>
-
-                                <div class = "row center">
-                                    <div class ="input-field col s12">
-                                        <input name="from_st" type="text" class = "validate" ng-model = "from_st" />
-                                        <label for = "from_st">From Station</label>
-                                    </div>
-                                </div>
-
-                                <div class = "row center">
-                                    <div class ="input-field col s12">
-                                        <input name="to_st" type="text" class = "validate" ng-model = "to_st" />
-                                        <label for = "to_st">To Station </label>
-                                    </div>
-                                </div>
-
-                                <div class = "row center">
-                                    <div class ="input-field col s12">
-                                        <input name="days" type="text" class = "validate" ng-model = "days" />
-                                        <label for = "days">Days</label>
-                                    </div>
-                                </div>
-
-                                <div class = "row center">
-                                    <div class ="input-field col s12">
-                                        <input name="deptime" type="text" class = "validate" ng-model = "deptime" />
-                                        <label for = "deptime">Departure Time</label>
-                                    </div>
-                                </div>
-
-                                <div class = "row center">
-                                    <div class ="input-field col s12">
-                                        <input name="arrival" type="text" class = "validate" ng-model = "arrival" />
-                                        <label for = "arrival">Arrival Time</label>
-                                    </div>
-                                </div>
-
-
-
-                                <div class ="row center">
-                                    <div class="col s12">
-                                        <input type="submit" id = "btn_save" ng-click ="add()" value="Save Schedule" class="btn-large waves-effect waves-light red" />
-                                    </div>
-                                </div>
-
-                                <table class = "table highlight centered">
-                                    <div class = "row center">
-                                        <thead>
-                                            <tr>
-                                                <th>Number</th>
-                                                <th>Train Name</th>
-                                                <th>From Station</th>
-                                                <th>To Station</th>
-                                                <th>Days</th>
-                                                <th>Departure Time</th>
-                                                <th>Arrival Time</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr ng-repeat = "a in schedule">
-                                                <td>{{a.trainno}}</td>
-                                                <td>{{a.name}}</td>
-                                                <td>{{a.from_st}}</td>
-                                                <td>{{a.to_st}}</td>
-                                                <td>{{a.days}}</td>
-                                                <td>{{a.deptime}}</td>
-                                                <td>{{a.arrival}}</td>
-                                                <td><input type="submit" value="Delete" ng-click = "remove($index, a.trainno)" 
-                                                           class="btn-large waves-effect waves-light red" /></td>
-                                            </tr>
-                                        </tbody>
-                                    </div>
-                                </table>								
-                            </div>
-
-                            <div class = "row center">
-                                <div class = "col s12">
-                                    <a href = "home_admin.php" class="btn-large waves-effect waves-light red">Home</a>
-                                    <a href = "addstation.php" class="btn-large waves-effect waves-light red">Add a Station</a>
-                                    <a href = "addtrains.php" class="btn-large waves-effect waves-light red">Add a Train</a>
-                                </div>
-                            </div>
-
-                    </form>                   
-                </div>
-            </div>
-    </body>
-</html>
-
-<script>
-
-            $(document).ready(function(){
-         
-         $('#trainno').typeahead({
-          source: function(query, result)
-          {
-           $.ajax({
-            url:"fetchtrainno.php",
-            method:"POST",
-            data:{query:query},
-            dataType:"json",
-            success:function(data)
-            {
-             result($.map(data, function(item){
-              return item;
-             }));
-            }
-           })
-          }
-         });
-         
-        });
-
-
-            $(document).ready(function(){
-         
-         $('#name').typeahead({
-          source: function(query, result)
-          {
-           $.ajax({
-            url:"fetchtrainname.php",
-            method:"POST",
-            data:{query:query},
-            dataType:"json",
-            success:function(data)
-            {
-             result($.map(data, function(item){
-              return item;
-             }));
-            }
-           })
-          }
-         });
-         
-        });
-
-
-    $(document).ready(function () {
-    $('select').material_select();
-    });
-    var fetch = angular.module('myapp', []);
-
-    fetch.controller('userCtrl', ['$scope', '$http', function ($scope, $http) {
-
-    $scope.loadTrain = function () {
-        $http.get("load_train.php")
-                .success(function (data) {
-                    $scope.trains = data;
-                })
-    }
-
-    // Get all records
-    $http({
-        method: 'post',
-        url: 'insertdeleteschedule.php',
-        data: {request_type: 1},
-
-    }).then(function successCallback(response) {
-        $scope.schedule = response.data;
-    });
-
-    // Add new record
-    $scope.add = function () {
-        $http({
-            method: 'post',
-            url: 'insertdeleteschedule.php',
-            data: {trainno: $scope.trainno, name: $scope.name, from_st: $scope.from_st, to_st: $scope.to_st, days: $scope.days, deptime: $scope.deptime, arrival: $scope.arrival, request_type: 2},
-        }).then(function successCallback(response) {
-            $scope.schedule.push(response.data[0]);
-        });
-    }
-
-    // Remove record
-    $scope.remove = function (index, trainno) {
-
-        $http({
-            method: 'post',
-            url: 'insertdeleteschedule.php',
-            data: {trainno: trainno, request_type: 3},
-        }).then(function successCallback(response) {
-            $scope.schedule.splice(index, 1);
-        });
-    }
-
-    }]);
-
-</script>
+ </script>

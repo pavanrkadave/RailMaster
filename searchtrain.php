@@ -63,7 +63,7 @@
         function load_data(query)
         {
             $.ajax({
-                url: "fetch.php",
+                url: "fetchtrain.php",
                 method: "POST",
                 data: {query: query},
                 success: function (data)
